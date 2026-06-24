@@ -1,0 +1,11 @@
+{
+  "name": "skills",
+  "description": "Thiago's personal Gen-AI / Claude Code skills (git workflow, blogging, packaging, meta).",
+  "version": "0.1.0",
+  "author": {
+    "name": "Thiago Perrotta",
+    "url": "https://github.com/thiagowfx"
+  },
+  "homepage": "https://github.com/thiagowfx/skills",
+  "license": "MIT"
+}

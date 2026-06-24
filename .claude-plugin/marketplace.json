@@ -1,0 +1,14 @@
+{
+  "name": "thiagowfx",
+  "owner": {
+    "name": "Thiago Perrotta",
+    "url": "https://github.com/thiagowfx"
+  },
+  "plugins": [
+    {
+      "name": "skills",
+      "source": "./plugins/skills",
+      "description": "Thiago's personal Gen-AI / Claude Code skills."
+    }
+  ]
+}
