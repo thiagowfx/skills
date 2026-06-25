@@ -21,11 +21,7 @@ Edit skills here. (Dotfiles consuming from this repo is a planned follow-up.)
    matches against to decide when to invoke — make it trigger-rich (mention the phrases a user
    would say).
 3. Add a row to the README skills table.
-4. Bump `version` in `plugin.json` (users only get updates when it changes).
+4. `just bump` (or `just bump minor` / `major`) — bumps `version` in `plugin.json`; users only
+   get updates when it changes.
 
-## Validate
-
-```sh
-jq . .claude-plugin/marketplace.json
-jq . plugins/skills/.claude-plugin/plugin.json
-```
+Manifest JSON validity is enforced by the `check-json` prek hook on commit.
