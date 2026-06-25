@@ -5,7 +5,7 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 
 ## Install
 
-```
+```text
 /plugin marketplace add thiagowfx/skills
 /plugin install skills@thiagowfx
 ```
@@ -18,7 +18,7 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 | --- | --- |
 | `address-pr-comments` | Fetch PR review comments and address them. |
 | `bloggify` | Draft a blog post for perrotta.dev in the existing house style. |
-| `catchup` | Refresh context on the current repo — uncommitted changes, recent commits, open PRs, worktrees, stashes, plans, handoff notes. |
+| `catchup` | Refresh context on the current repo — uncommitted changes, commits, open PRs, worktrees, stashes, plans. |
 | `find-skills` | Discover and install agent skills when looking for functionality that might exist as a skill. |
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
@@ -28,7 +28,7 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 
 ## Layout
 
-```
+```text
 .claude-plugin/marketplace.json   # marketplace manifest
 plugins/skills/                    # the "skills" plugin
   .claude-plugin/plugin.json       # plugin manifest

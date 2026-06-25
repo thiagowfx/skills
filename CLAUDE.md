@@ -25,7 +25,7 @@ Edit skills here. (Dotfiles consuming from this repo is a planned follow-up.)
 
 ## Validate
 
-```
+```sh
 jq . .claude-plugin/marketplace.json
 jq . plugins/skills/.claude-plugin/plugin.json
 ```
