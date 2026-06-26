@@ -40,14 +40,7 @@ If you need to set the date precisely, `just touch <path>` rewrites the frontmat
 
 ### Step 3 — Write it
 
-Follow STYLE.md. The shape, in brief (defer to STYLE.md for detail):
-
-- Minimal frontmatter: `title`, `date`, `tags` only. Pick tags from the existing vocabulary (`ai`, `coding`, `dev`, `linux`, `macos`, `meta`, `privacy`, `serenity`, `terraform`, …) — grep existing posts rather than inventing new ones.
-- Open with a bold **Problem statement**, a **Today I learned**, a `[Previously]({{< ref "..." >}}).` backlink, or jump straight in. Never "In this post, I will…".
-- Keep it short (most posts < 50 lines). Let the code blocks carry the weight.
-- `%` prompt for zsh, `$` for bash. `>` blockquotes for quoting upstream docs verbatim.
-- Internal cross-refs use `{{< ref "YYYY-MM-DD-slug" >}}` (slug only, no path, no `.md`). If you reference an earlier post, verify the slug exists in `content/posts/`.
-- Close with one sentence of reflection, an upstream link, or nothing. Never "In conclusion…".
+Follow STYLE.md — it is the source of truth for voice, structure, frontmatter, and conventions.
 
 ### Step 3.5 — Disclose that this skill wrote the draft
 
