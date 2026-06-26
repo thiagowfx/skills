@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "thiagowfx",
-      "source": "./plugins/skills",
+      "source": "./plugins/thiagowfx",
       "description": "Thiago's personal Gen-AI / Claude Code skills."
     }
   ]
