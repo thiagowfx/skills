@@ -7,7 +7,7 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 
 ```text
 /plugin marketplace add thiagowfx/skills
-/plugin install skills@thiagowfx
+/plugin install thiagowfx@thiagowfx
 ```
 
 `/plugin marketplace update thiagowfx` to pull later changes.
@@ -30,7 +30,7 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 
 ```text
 .claude-plugin/marketplace.json   # marketplace manifest
-plugins/skills/                    # the "skills" plugin
+plugins/skills/                    # the "thiagowfx" plugin (dir name is just a path)
   .claude-plugin/plugin.json       # plugin manifest
   skills/<name>/SKILL.md           # one dir per skill (auto-discovered)
 ```

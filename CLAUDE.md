@@ -5,7 +5,8 @@ Personal Claude Code skills, shipped as a plugin marketplace.
 ## Layout
 
 - `.claude-plugin/marketplace.json` — marketplace manifest. Marketplace name: `thiagowfx`.
-- `plugins/skills/.claude-plugin/plugin.json` — the single plugin, name `skills`.
+- `plugins/skills/.claude-plugin/plugin.json` — the single plugin, name `thiagowfx`. This
+  name is the skill-invocation namespace (e.g. `/thiagowfx:ship`), not `displayName`.
 - `plugins/skills/skills/<name>/SKILL.md` — one directory per skill. Skills are
   auto-discovered; do not list them in `plugin.json`.
 
