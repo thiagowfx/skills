@@ -70,14 +70,8 @@ repos:
     rev: e72a3ca1632f0b11a07d171449fe447a7ff6795e # frozen: v0.48.0
     hooks:
       - id: markdownlint
-        exclude: ^plugins/skills/skills/
         args:
           - --config=.markdownlintrc.json
-      - id: markdownlint
-        name: markdownlint (skills)
-        files: ^plugins/skills/skills/
-        args:
-          - --config=.markdownlintrc-skills.json
   - repo: https://github.com/rhysd/actionlint/
     rev: 914e7df21a07ef503a81201c76d2b11c789d3fca # frozen: v1.7.12
     hooks:
