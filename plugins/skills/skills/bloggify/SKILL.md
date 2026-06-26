@@ -13,6 +13,7 @@ Write a blog post about `$ARGUMENTS` for the perrotta.dev blog.
 - Repo root: `~/Workspace/perrotta.dev`. Hugo-based. Posts live in `content/posts/` as `YYYY-MM-DD-title.md`.
 - The repo owns the style. **Read `~/Workspace/perrotta.dev/STYLE.md` and `~/Workspace/perrotta.dev/CLAUDE.md` first** — they are the source of truth for voice, structure, frontmatter, and conventions. Do not duplicate or override them here; follow them.
 - Read the 3–4 most recent posts to calibrate. Get them by date prefix, not mtime:
+
   ```sh
   ls ~/Workspace/perrotta.dev/content/posts/*.md | sort | tail -5
   ```

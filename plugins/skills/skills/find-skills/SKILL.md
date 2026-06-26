@@ -14,13 +14,14 @@ Discover and install skills from the open agent skills ecosystem.
 - `npx skills add <package>` — install from GitHub
 - `npx skills check` / `npx skills update` — update installed skills
 
-Browse: https://skills.sh/
+Browse: <https://skills.sh/>
 
 ## Steps
 
 ### 1. Check the leaderboard first
 
-Visit https://skills.sh/ — ranked by installs. Top picks for web dev:
+Visit <https://skills.sh/> — ranked by installs. Top picks for web dev:
+
 - `vercel-labs/agent-skills` — React, Next.js, design
 - `anthropics/skills` — frontend, document processing
 

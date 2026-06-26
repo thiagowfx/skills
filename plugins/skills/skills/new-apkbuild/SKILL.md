@@ -19,20 +19,25 @@ Package `$ARGUMENTS` for Alpine Linux.
 
 1. If `<aports>/testing/<pkgname>/APKBUILD` already exists, read it and skip to Step 3.
 2. Find a sibling aport in the same language/ecosystem for a structural template:
+
    ```sh
    rg -l "^pkgname=" <aports>/{testing,community,main}/ | xargs grep -l '<distinctive marker e.g. cargo, go build>'
    ```
+
 3. Fetch the AUR PKGBUILD (or upstream build doc) as a starting baseline if a reference URL was provided.
 4. Scaffold:
+
    ```sh
    cd <aports>/testing
    newapkbuild <flags> <pkgname>
    ```
+
    Language flags: `-r` Rust/cargo, `-y` Python, `-p` Perl, `-c` C autotools, `-e` empty, `-a` C autotools w/ aclocal, `-m` Meson, `-n` `pkgname-pkgver` (no-fetch). Pick the closest match; tweak after.
 
 ## Step 2 — Populate APKBUILD
 
 Required fields:
+
 - `pkgname`, `pkgver`, `pkgrel=0` (first version)
 - `pkgdesc` (one short sentence, no trailing period, no "the"/"a" leader)
 - `url`, `arch="all"` (don't pre-narrow — let CI tell you)
@@ -58,9 +63,11 @@ abuild -r lint
 ## Step 4 — Common gotchas
 
 - **Rust**: if integration tests pull in unavailable runtimes (docker, julia, lua, haskell, node, ruby, swift, bun), restrict to unit tests:
-  ```
+
+  ```sh
   check() { cargo test --frozen --lib; }
   ```
+
   Add `checkdepends="bash python3 ..."` only for runtimes the unit tests actually need.
 - **Go**: `-buildmode=pie` may require `export CGO_ENABLED=1` (e.g. `make CGO_FLAG=1`). Watch for `math.MaxInt64` int-overflow errors on 32-bit archs — guard with `// +build !386 !arm` or restrict `arch=`.
 - **Test failures usually mean missing `checkdepends`** (bash, python3, git, …) before they mean "skip the test".
@@ -70,6 +77,7 @@ abuild -r lint
 ## Step 5 — CI across all archs
 
 Push a branch (`new-aport-<pkgname>` or similar) to the fork. GitLab CI runs the build matrix. When the pipeline finishes, smoke-test the produced `.apk`:
+
 ```sh
 # from a pipeline artifact
 doas apk add --allow-untrusted ./<pkgname>-<pkgver>-r0.apk

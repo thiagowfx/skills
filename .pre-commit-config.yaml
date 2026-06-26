@@ -50,7 +50,6 @@ repos:
     rev: 2ccb47ff45ad361a21071a7eedda4c37e6ae8c5a # frozen: v2.4.2
     hooks:
       - id: codespell
-        exclude: ^plugins/skills/skills/
   - repo: https://github.com/gitleaks/gitleaks
     rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
     hooks:
@@ -74,6 +73,11 @@ repos:
         exclude: ^plugins/skills/skills/
         args:
           - --config=.markdownlintrc.json
+      - id: markdownlint
+        name: markdownlint (skills)
+        files: ^plugins/skills/skills/
+        args:
+          - --config=.markdownlintrc-skills.json
   - repo: https://github.com/rhysd/actionlint/
     rev: 914e7df21a07ef503a81201c76d2b11c789d3fca # frozen: v1.7.12
     hooks:
