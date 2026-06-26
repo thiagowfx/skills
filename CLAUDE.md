@@ -2,11 +2,6 @@
 
 Personal Claude Code skills, shipped as a plugin marketplace.
 
-## Source of truth
-
-This repo is the source of truth for these skills — **not** `~/.dotfiles/claude/.claude/skills/`.
-Edit skills here. (Dotfiles consuming from this repo is a planned follow-up.)
-
 ## Layout
 
 - `.claude-plugin/marketplace.json` — marketplace manifest. Marketplace name: `thiagowfx`.
