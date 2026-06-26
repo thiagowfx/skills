@@ -1,7 +1,6 @@
 ---
 name: catchup
 description: Refresh context on the current repo — uncommitted changes, recent commits, open PRs (with full context for the current branch's PR), worktrees, stashes, plans, and handoff notes.
-argument-hint: "[file-path]"
 model: sonnet
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git worktree list:*), Bash(git stash list:*), Bash(git branch:*), Bash(gh pr list:*), Bash(gh pr view:*), Bash(gh pr checks:*), Bash(ls:*), Bash(test:*)
 ---
@@ -25,18 +24,16 @@ Gather the following in parallel where possible. Skip any that don't apply.
 6. **Worktrees**: `git worktree list`.
 7. **Stashes**: `git stash list`.
 8. **Plans**: if `plans/` or `.plans/` exists at the repo root, list files and briefly summarize current plan(s).
-9. **Handoff notes**: if `HANDOFF.md` (or similar) exists, read and summarize.
-
-$ARGUMENTS
+9. **Handoff notes**: if `HANDOFF.md` exists, read and summarize.
 
 ## Output
 
-Present a concise summary organized by section. Lead with what needs attention:
+Concise summary organized by section. Lead with what needs attention:
 
-- Uncommitted changes that should be committed or stashed
+- Uncommitted changes to commit or stash
 - Current-branch PR: unresolved review comments, failing CI, merge conflicts
 - Other PRs with failing CI
 - Stale worktrees
-- Plan stages next up for implementation
+- Plan stages next up
 
-Keep it brief and actionable — the user is re-entering this work and needs the shortest path back to productive.
+Brief and actionable — shortest path back to productive.

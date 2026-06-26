@@ -22,7 +22,6 @@ Commit all changes and create a pull request. Follow these steps:
 - Stage all changes: `git add -A`
 - Generate a conventional commit message based on the changes (e.g., `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`)
 - Create the commit with the generated message
-- If pre-commit hooks fail due to environment issues (not code issues), retry with `--no-verify`
 - If there are no changes to commit, skip to Step 2
 
 ## Step 2: Verify Prerequisites
@@ -59,18 +58,16 @@ Commit all changes and create a pull request. Follow these steps:
   2. `PULL_REQUEST_TEMPLATE.md` (repository root)
   3. `docs/PULL_REQUEST_TEMPLATE.md`
 - Use `test -f <path>` to check existence, then `cat` to read the first one found
-- If a template exists, you MUST use it as the structure for the PR description
+- If a template exists, use it as the structure for the PR description
 
 ## Step 7: Create PR
 
 - Analyze all commits and changes to create a concise PR description
-- If a template was found in Step 6, you MUST follow its structure and fill in
-  all sections
-- When the remote is on GitHub and the changes are non-trivial, include a
+- If a template was found in Step 6, follow its structure and fill in all sections
+- When the remote is on GitHub and the changes involve more than file renames or single-line edits, include a
   Mermaid diagram in the PR description to visually illustrate the change
   (e.g., flowchart of new logic, architecture of added components, before/after
-  state). Skip the diagram for trivial changes like typo fixes or config
-  tweaks.
+  state). Skip the diagram for typo fixes, config tweaks, or other trivial changes.
 - Create PR with reviewers: `gh pr create --title "<title>" --body
   "<description>" --reviewer $ARGUMENTS`
 - If $ARGUMENTS is empty, omit the --reviewer flag

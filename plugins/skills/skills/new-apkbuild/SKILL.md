@@ -53,7 +53,7 @@ apkbuild-lint APKBUILD
 abuild -r lint
 ```
 
-`abuild` requires an Alpine environment. If the current host isn't Alpine, stop and ask the user to run these steps; don't fabricate output.
+`abuild` requires an Alpine environment. If not on Alpine, tell the user to run Steps 3 onward locally — don't fabricate output.
 
 ## Step 4 — Common gotchas
 

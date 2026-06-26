@@ -1,6 +1,6 @@
 ---
 name: pr-pass
-description: Push, wait for CI, fix failures, and loop until all checks pass
+description: Push, watch CI, fix failures as they complete, and loop until all checks pass. Use when asked to "/pr-pass", "fix CI", "make checks green", or "loop until CI passes".
 ---
 
 # PR Pass — Push and Fix Until Green
@@ -44,7 +44,7 @@ Poll CI checks and start analyzing failures as soon as individual checks complet
   failed = any(c['bucket'] == 'fail' for c in checks)
   done = all(c['state'] != 'PENDING' for c in checks)
   sys.exit(0 if (failed or done) else 1)
-  "; do sleep 30; done && echo "CI status changed"
+  "; do true; done && echo "CI status changed"
   ```
 
   Then re-fetch the full check results and proceed.
@@ -76,6 +76,6 @@ Poll CI checks and start analyzing failures as soon as individual checks complet
 
 ## Notes
 
-- If a failure looks like a flaky test (passes locally, intermittent history), re-push without changes to retry CI
+- If a test passes locally and has an intermittent history on main, re-push without changes to retry CI
 - If a failure is in infrastructure (CI config, permissions, external service), report it and stop rather than looping
 - Always run local verification before pushing to avoid wasting CI cycles
