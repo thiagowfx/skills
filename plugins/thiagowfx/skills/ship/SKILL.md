@@ -1,9 +1,9 @@
 ---
 name: ship
-description: Commit changes (if any) and send a PR for review
+description: Commit any pending changes and open a pull request for review. Use whenever the user says "/ship", "ship it", "send a PR", "open a PR", "commit and PR this", "put this up for review", or wants their current work turned into a reviewable PR — branching off main automatically when needed.
 argument-hint: "[reviewer]"
 model: sonnet
-allowed-tools: Bash(cat:*), Bash(gh api user:*), Bash(gh pr create:*), Bash(gh pr edit:*), Bash(gh pr view:*), Bash(git add:*), Bash(git checkout:*), Bash(git commit:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(git rev-parse:*), Bash(git status:*), Bash(test:*)
+allowed-tools: Bash(cat:*), Bash(gh api user:*), Bash(gh pr create:*), Bash(gh pr edit:*), Bash(gh pr view:*), Bash(git add:*), Bash(git checkout:*), Bash(git commit:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(git rev-parse:*), Bash(git status:*), Bash(git symbolic-ref:*), Bash(test:*)
 ---
 
 Commit all changes and create a pull request. Follow these steps:
@@ -13,9 +13,14 @@ Commit all changes and create a pull request. Follow these steps:
 ! gh api user --jq .login
 ! git rev-parse --show-toplevel
 ! git rev-parse --abbrev-ref HEAD
+! git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || echo "origin/HEAD unset"
 ! git status
 ! git diff
 ! git diff --staged
+
+The default branch is whatever `refs/remotes/origin/HEAD` points at (e.g. `origin/main`). If that
+ref is unset, fall back to `main` when `origin/main` exists, else `master`. Call the result
+`<default>` and use it consistently below instead of hardcoding `main`/`master`.
 
 ## Step 1: Commit Changes
 
@@ -26,13 +31,13 @@ Commit all changes and create a pull request. Follow these steps:
 
 ## Step 2: Verify Prerequisites
 
-- Run `git log origin/main..HEAD --oneline` (if not main, then master)
+- Run `git log origin/<default>..HEAD --oneline` to list the commits this branch is ahead by
 - Check that there are commits to push
 - If no commits exist, stop and inform the user: "No commits to push. Create commits first."
 
 ## Step 3: Handle Branch Creation
 
-- If current branch is 'main' or 'master', create a new branch first:
+- If the current branch is `<default>` (i.e. you're sitting on the default branch), create a new branch first:
   - Generate a descriptive branch name based on the changes
   - Prefix it with the GitHub username and slash (e.g., "username/feature-name")
   - Use `git checkout -b <branch-name>` to create and switch to it

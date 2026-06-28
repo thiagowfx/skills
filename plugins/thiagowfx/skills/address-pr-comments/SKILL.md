@@ -1,6 +1,6 @@
 ---
 name: address-pr-comments
-description: Fetch PR review comments and address them
+description: Fetch unresolved review comments on the current branch's PR and address them. Use whenever the user says "address PR comments", "/address-pr-comments", "respond to the review feedback", "the reviewer left comments", "fix what the reviewer asked", or a code review on their PR requested changes — even if they don't name the PR explicitly.
 ---
 
 # Address PR Comments

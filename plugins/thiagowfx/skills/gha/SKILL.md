@@ -1,6 +1,6 @@
 ---
 name: gha
-description: Analyze GitHub Actions failures and identify root causes
+description: Analyze a GitHub Actions failure and identify the root cause. Use whenever the user pastes a GitHub Actions run URL, says "/gha", asks "why did CI fail", "what broke the build", "this workflow is failing", "which commit broke CI", or wants a failing Actions run investigated — even without the word "GitHub Actions".
 argument-hint: "<url>"
 ---
 
@@ -8,12 +8,15 @@ Investigate this GitHub Actions URL: $ARGUMENTS
 
 Use the gh CLI to analyze this workflow run. Your investigation should:
 
-1. **Get basic info & identify actual failure**:
+1. **Get basic info & identify the failure**:
    - What workflow/job failed, when, and on which commit?
-   - CRITICAL: Read the full logs carefully to find what SPECIFICALLY caused the exit code 1
-   - Distinguish between warnings/non-fatal errors vs actual failures
-   - Look for patterns like "failing:", "fatal:", or script logic that determines when to exit 1
-   - If you see both "non-fatal" and "fatal" errors, focus on what actually caused the failure
+   - Read the full logs to find what specifically produced the non-zero exit. CI output is noisy —
+     a job often prints many red-looking lines (warnings, retries, "non-fatal" notices) that didn't
+     actually fail it. The goal is the *one* thing that did, so the rest of the investigation
+     doesn't chase a red herring.
+   - Look for the signal that marks the real failure: patterns like "failing:", "fatal:", `Error:`
+     annotations, or the script logic that decides when to `exit 1`.
+   - When both "non-fatal" and "fatal" errors appear, trace which one actually stopped the job.
 
 2. **Check flakiness**: Check the past 10-20 runs of the exact same failing job:
     - If a workflow has multiple jobs, check history for the specific job that failed, not just the workflow
@@ -29,8 +32,9 @@ Use the gh CLI to analyze this workflow run. Your investigation should:
    - If verified, report the breaking commit with high confidence
 
 4. **Root cause**: Based on logs, history, and any breaking commit, what's the likely cause?
-   - Focus on what ACTUALLY caused the failure (not just any errors you see)
-   - Verify your hypothesis against the logs and failure logic
+   - Tie the cause back to the specific failure trigger from step 1, not to incidental errors.
+   - Verify the hypothesis against the logs and failure logic before reporting it — a plausible
+     guess that the logs don't actually support is worse than saying "couldn't determine".
 
 5. **Check for existing fix PRs**: Search for open PRs that might already address this issue:
    - Use `gh pr list --state open --search "<keywords>"` with relevant error messages or file names

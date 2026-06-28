@@ -2,6 +2,7 @@
 name: find-skills
 description: Discover and install agent skills. Use when the user asks "find a skill for X", "is there a skill for X", "how do I do X", or wants to extend Claude's capabilities with installable skills.
 model: sonnet
+source: https://github.com/vercel-labs/skills (skills/find-skills, MIT © Vercel)
 ---
 
 Discover and install skills from the open agent skills ecosystem.

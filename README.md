@@ -56,4 +56,5 @@ plugins/thiagowfx/                 # the "thiagowfx" plugin
 Inspired by [JuliusBrussee/skills](https://github.com/JuliusBrussee/skills).
 
 `grill-me` and `tdd` are derived from [mattpocock/skills](https://github.com/mattpocock/skills)
-(MIT © Matt Pocock). See [THIRD_PARTY.md](THIRD_PARTY.md).
+(MIT © Matt Pocock); `find-skills` from [vercel-labs/skills](https://github.com/vercel-labs/skills)
+(MIT © Vercel). See [THIRD_PARTY.md](THIRD_PARTY.md).
