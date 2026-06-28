@@ -1,4 +1,4 @@
-manifest := "plugins/skills/.claude-plugin/plugin.json"
+manifest := "plugins/thiagowfx/.claude-plugin/plugin.json"
 
 # List recipes
 default:
