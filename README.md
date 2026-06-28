@@ -40,6 +40,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `new-apkbuild` | Scaffold and iterate on an Alpine Linux APKBUILD for a new aport. |
 | `pr-pass` | Push, wait for CI, fix failures, loop until all checks pass. |
 | `ship` | Commit changes (if any) and send a PR for review. |
+| `tdd` | Test-driven development — red-green-refactor via vertical tracer-bullet slices. |
 
 ## Layout
 
@@ -54,5 +55,5 @@ plugins/thiagowfx/                 # the "thiagowfx" plugin
 
 Inspired by [JuliusBrussee/skills](https://github.com/JuliusBrussee/skills).
 
-`grill-me` is derived from [mattpocock/skills](https://github.com/mattpocock/skills)
-(`skills/productivity/grilling`, MIT © Matt Pocock). See [THIRD_PARTY.md](THIRD_PARTY.md).
+`grill-me` and `tdd` are derived from [mattpocock/skills](https://github.com/mattpocock/skills)
+(MIT © Matt Pocock). See [THIRD_PARTY.md](THIRD_PARTY.md).

@@ -1,12 +1,14 @@
 # Third-party attributions
 
-## `grill-me`
+## mattpocock/skills
 
-The `grill-me` skill (`plugins/thiagowfx/skills/grill-me/`) is derived from the
-`grilling` skill in [mattpocock/skills](https://github.com/mattpocock/skills)
-(`skills/productivity/grilling`), used under the MIT License.
+Both derived from [mattpocock/skills](https://github.com/mattpocock/skills), used
+under the MIT License (notice below):
 
-```
+- `grill-me` (`plugins/thiagowfx/skills/grill-me/`) — from `skills/productivity/grilling`.
+- `tdd` (`plugins/thiagowfx/skills/tdd/`) — from `skills/engineering/tdd`.
+
+```text
 MIT License
 
 Copyright (c) 2026 Matt Pocock
