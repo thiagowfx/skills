@@ -53,3 +53,6 @@ plugins/thiagowfx/                 # the "thiagowfx" plugin
 ## Credits
 
 Inspired by [JuliusBrussee/skills](https://github.com/JuliusBrussee/skills).
+
+`grill-me` is derived from [mattpocock/skills](https://github.com/mattpocock/skills)
+(`skills/productivity/grilling`, MIT © Matt Pocock). See [THIRD_PARTY.md](THIRD_PARTY.md).
