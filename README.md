@@ -12,6 +12,21 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 
 `/plugin marketplace update thiagowfx` to pull later changes.
 
+### Other agents (opencode, pi, cursor...)
+
+The plugin marketplace is Claude Code-only. On any other agent, the same `SKILL.md`
+files install via the cross-agent [`skills` CLI](https://github.com/vercel-labs/skills):
+
+```bash
+npx skills add thiagowfx/skills          # all skills, into ./.claude/skills
+npx skills add thiagowfx/skills -g       # global (~/.claude/skills)
+npx skills add thiagowfx/skills -l       # list without installing
+npx skills add thiagowfx/skills -s ship  # one skill
+```
+
+This copies plain `SKILL.md` files — without the plugin's `/thiagowfx:` namespacing
+or versioned updates. Prefer the marketplace above on Claude Code.
+
 ## Skills
 
 | Skill | Description |
@@ -30,7 +45,7 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 
 ```text
 .claude-plugin/marketplace.json   # marketplace manifest
-plugins/skills/                    # the "thiagowfx" plugin (dir name is just a path)
+plugins/thiagowfx/                 # the "thiagowfx" plugin
   .claude-plugin/plugin.json       # plugin manifest
   skills/<name>/SKILL.md           # one dir per skill (auto-discovered)
 ```
