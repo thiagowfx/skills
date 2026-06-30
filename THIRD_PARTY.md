@@ -8,10 +8,11 @@ MIT License.
 
 ## mattpocock/skills
 
-Both derived from [mattpocock/skills](https://github.com/mattpocock/skills), used
+All derived from [mattpocock/skills](https://github.com/mattpocock/skills), used
 under the MIT License (notice below):
 
 - `grill-me` (`plugins/thiagowfx/skills/grill-me/`) — from `skills/productivity/grilling`.
+- `handoff` (`plugins/thiagowfx/skills/handoff/`) — from `skills/productivity/handoff`.
 - `tdd` (`plugins/thiagowfx/skills/tdd/`) — from `skills/engineering/tdd`.
 
 ```text

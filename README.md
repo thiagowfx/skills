@@ -36,6 +36,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `catchup` | Refresh context on the current repo — uncommitted changes, commits, open PRs, worktrees, stashes, plans. |
 | `find-skills` | Discover and install agent skills when looking for functionality that might exist as a skill. |
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
+| `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
 | `new-apkbuild` | Scaffold and iterate on an Alpine Linux APKBUILD for a new aport. |
 | `pr-pass` | Push, wait for CI, fix failures, loop until all checks pass. |
@@ -55,6 +56,6 @@ plugins/thiagowfx/                 # the "thiagowfx" plugin
 
 Inspired by [JuliusBrussee/skills](https://github.com/JuliusBrussee/skills).
 
-`grill-me` and `tdd` are derived from [mattpocock/skills](https://github.com/mattpocock/skills)
+`grill-me`, `handoff`, and `tdd` are derived from [mattpocock/skills](https://github.com/mattpocock/skills)
 (MIT © Matt Pocock); `find-skills` from [vercel-labs/skills](https://github.com/vercel-labs/skills)
 (MIT © Vercel). See [THIRD_PARTY.md](THIRD_PARTY.md).
