@@ -9,6 +9,11 @@ default:
 version:
     @jq -r .version {{ manifest }}
 
+# Update the installed thiagowfx plugin to the latest published version (restart required to apply)
+update:
+    claude plugin marketplace update thiagowfx
+    claude plugin update thiagowfx@thiagowfx
+
 # Bump the plugin version (level = major | minor | patch)
 bump level="patch":
     #!/usr/bin/env bash
