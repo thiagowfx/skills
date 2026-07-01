@@ -51,7 +51,7 @@ repos:
     hooks:
       - id: codespell
   - repo: https://github.com/gitleaks/gitleaks
-    rev: 2ca41cc1372d1e939a6a879f18cdc19fc1cac1ce # frozen: v8.30.0
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e # frozen: v8.30.1
     hooks:
       - id: gitleaks
   - repo: https://github.com/golangci/misspell
@@ -59,15 +59,15 @@ repos:
     hooks:
       - id: misspell
   - repo: https://github.com/google/keep-sorted
-    rev: ac58172d1655aa47a6f806e56ff0f269d6dbe637 # frozen: v0.8.0
+    rev: 339d935575ef7d92f2c9b4df9ce4b724d73c9201 # frozen: v0.9.1
     hooks:
       - id: keep-sorted
   - repo: https://github.com/google/yamlfmt
-    rev: b5ca1890231d5e1e5181fef75a1be609d1e25029 # frozen: v0.21.0
+    rev: 21ca5323a9c87ee37a434e0ca908efc0a89daa07 # frozen: v0.21.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: e72a3ca1632f0b11a07d171449fe447a7ff6795e # frozen: v0.48.0
+    rev: a4d5d37e66ebcd6b3705204a1d6dbb56dea66338 # frozen: v0.49.0
     hooks:
       - id: markdownlint
         args:
@@ -77,7 +77,7 @@ repos:
     hooks:
       - id: actionlint
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: 9257c6050c0261b8c57e712f632dc4a8010109a9 # frozen: v1.25.2
+    rev: e3eebf65325ccc992422292cb7a4baee967cf815 # frozen: v1.26.1
     hooks:
       - id: zizmor
   - repo: local
