@@ -5,77 +5,75 @@ description: Push, watch CI, fix failures as they complete, and loop until all c
 
 # PR Pass — Push and Fix Until Green
 
-Push your code and loop: wait for CI, analyze failures, fix them, and re-push until all checks pass.
+Push your code, then let `/goal` re-drive each turn: check CI, fix a failure, push, repeat until every check passes.
+
+## How this works
+
+This skill delegates the loop to the built-in
+[`/goal`](https://code.claude.com/docs/en/goal) command (Claude Code
+v2.1.139+). Instead of a hand-rolled iteration counter and a `Monitor` poll,
+you set one completion condition; after each turn a fast model checks whether
+CI is green and, if not, starts another turn. The goal auto-clears once it
+holds.
+
+Two consequences shape the steps below:
+
+- **The evaluator only reads the transcript** — it does not run `gh` or read files. So every turn must *surface the current CI state in your output* (paste the `gh pr checks` result) for the evaluator to judge against.
+- **Each turn does one pass, then ends** — check state, fix at most the failures that have surfaced, push. Do not loop inside a turn; `/goal` restarts you.
 
 ## Instructions
 
-### Step 1: Push
+### Step 1: Set the goal
 
-- Run `git push` to push the current branch
-- If no upstream is set, run `git push -u origin $(git branch --show-current)`
+Before touching CI, set the completion condition. This starts the loop immediately:
 
-### Step 2: Find the PR
+```text
+/goal every check on this PR has passed (gh pr checks shows no FAILURE and no PENDING), or stop after 5 turns
+```
 
-- Run `gh pr view --json url,number,headRefName` to find the PR for this branch
-- If no PR exists, stop and tell the user to create one first (e.g., `/send-pr`)
+The `or stop after 5 turns` clause replaces the old max-5-iterations guard. If the session is unattended, the user should pair this with auto mode — `/goal` does not change permissions, so `git push` / `gh` calls still prompt otherwise.
 
-### Step 3: Poll CI and Act Eagerly
+### Step 2: Push
 
-Poll CI checks and start analyzing failures as soon as individual checks complete — don't wait for all checks to finish.
+- Run `git push` to push the current branch.
+- If no upstream is set, run `git push -u origin $(git branch --show-current)`.
 
-**Important:** `--watch` and `--json` are mutually exclusive in `gh pr checks`. Never combine them.
+### Step 3: Find the PR
 
-**Important:** Never use `sleep` to poll. Use the `Monitor` tool with an until-loop to wait for CI state changes. This avoids the sleep sandbox block.
+- Run `gh pr view --json url,number,headRefName` to find the PR for this branch.
+- If no PR exists, stop and tell the user to create one first (e.g., `/send-pr`). Clear the goal with `/goal clear` — there is nothing to loop on.
 
-- First, run a single check to see current state:
+### Step 4: Check CI once and surface it
 
-  ```bash
-  gh pr checks <number> --json name,state,bucket,link
-  ```
+Run a single check and **include its output in your reply** so the goal evaluator can see it:
 
-- If any check has `"state": "FAILURE"` — immediately start analyzing and fixing it (Step 4)
-- If all checks have completed (no `"state": "PENDING"`) and all passed — report success and stop
-- If checks are still pending and none have failed yet — use the `Monitor` tool to poll until a change occurs:
+```bash
+gh pr checks <number> --json name,state,bucket,link
+```
 
-  ```bash
-  until gh pr checks <number> --json name,state,bucket 2>&1 | python3 -c "
-  import json, sys
-  checks = json.load(sys.stdin)
-  failed = any(c['bucket'] == 'fail' for c in checks)
-  done = all(c['state'] != 'PENDING' for c in checks)
-  sys.exit(0 if (failed or done) else 1)
-  "; do true; done && echo "CI status changed"
-  ```
+- If all checks completed (no `"state": "PENDING"`) and all passed — report success. The goal condition now holds and auto-clears.
+- If any check is `"state": "FAILURE"` — go to Step 5 for those failures.
+- If checks are still `PENDING` and none failed — say so and end the turn. `/goal` re-runs after the evaluator; on the next turn the state will have advanced. Do not `sleep` or `Monitor`-poll inside the turn; the loop is external now.
 
-  Then re-fetch the full check results and proceed.
+### Step 5: Analyze and fix the failures that have surfaced
 
-- This eager approach means you can start diagnosing and fixing the first failure while slower checks are still running.
+For each failed check:
 
-### Step 4: Analyze Failures
+```bash
+gh run view <run-id> --log-failed
+```
 
-- For each failed check, get the logs:
+- Identify the root cause (test failure, lint error, build error, type error, etc.).
+- Distinguish flaky from real by checking whether the same test passed in recent runs.
+- Fix the issue in the code.
+- Run relevant local checks (tests, lint, build) to verify before pushing.
+- Commit with a clear message describing the fix.
 
-  ```bash
-  gh run view <run-id> --log-failed
-  ```
-
-- Identify the root cause of each failure (test failures, lint errors, build errors, type errors, etc.)
-- Distinguish between flaky tests and real failures by checking if the same test passed in recent runs
-
-### Step 5: Fix
-
-- Fix the identified issues in the code
-- Run relevant local checks (tests, lint, build) to verify the fix before pushing
-- Commit the fix with a clear message describing what was fixed
-
-### Step 6: Loop
-
-- Go back to Step 1
-- Maximum 5 iterations to avoid infinite loops
-- If still failing after 5 attempts, report the remaining failures and stop
+Then end the turn. Step 2 (push) runs at the top of the next turn that `/goal` starts.
 
 ## Notes
 
-- If a test passes locally and has an intermittent history on main, re-push without changes to retry CI
-- If a failure is in infrastructure (CI config, permissions, external service), report it and stop rather than looping
-- Always run local verification before pushing to avoid wasting CI cycles
+- If a test passes locally and has an intermittent history on main, push without changes to retry CI — the next goal turn re-checks.
+- If a failure is in infrastructure (CI config, permissions, external service), report it and run `/goal clear` rather than burning turns.
+- Always run local verification before pushing to avoid wasting CI cycles.
+- To stop early at any point, run `/goal clear`. To see turns/tokens spent, run `/goal` with no argument.
