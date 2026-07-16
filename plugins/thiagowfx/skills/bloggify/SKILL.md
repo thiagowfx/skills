@@ -60,7 +60,9 @@ Keep it to that one italic line — subtle, not a disclaimer block. Do not remov
 cd ~/Workspace/perrotta.dev && prek run --files content/posts/<file>
 ```
 
-Markdownlint and the Hugo build run here. Fix what it flags. Then show the user the rendered file path and the post body, and stop — **don't commit or push** unless asked. Committing is the user's call (`git commit -m "new post: title"`).
+Markdownlint and the Hugo build run here. Fix what it flags. Then show the user the rendered file path and the post body, and stop — **don't commit** unless asked, and **never `git push`**. Committing is the user's call (`git commit -m "new post: title"`).
+
+Pushing is always the user's decision, even when they ask you to commit.
 
 ## Notes
 
