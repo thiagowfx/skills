@@ -1,4 +1,5 @@
-manifest := "plugins/thiagowfx/.claude-plugin/plugin.json"
+claude_manifest := "plugins/thiagowfx/.claude-plugin/plugin.json"
+pi_manifest := "package.json"
 skills_dir := "plugins/thiagowfx/skills"
 
 # List recipes
@@ -7,7 +8,7 @@ default:
 
 # Print the current plugin version
 version:
-    @jq -r .version {{ manifest }}
+    @jq -r .version {{ claude_manifest }}
 
 # Update the installed thiagowfx plugin to the latest published version (restart required to apply)
 update:
@@ -18,7 +19,7 @@ update:
 bump level="patch":
     #!/usr/bin/env bash
     set -euo pipefail
-    cur=$(jq -r .version {{ manifest }})
+    cur=$(jq -r .version {{ claude_manifest }})
     IFS=. read -r major minor patch <<<"$cur"
     case "{{ level }}" in
       major) major=$((major + 1)); minor=0; patch=0 ;;
@@ -28,7 +29,9 @@ bump level="patch":
     esac
     new="$major.$minor.$patch"
     tmp=$(mktemp)
-    jq --arg v "$new" '.version = $v' {{ manifest }} >"$tmp" && mv "$tmp" {{ manifest }}
+    jq --arg v "$new" '.version = $v' {{ claude_manifest }} >"$tmp" && mv "$tmp" {{ claude_manifest }}
+    tmp=$(mktemp)
+    jq --arg v "$new" '.version = $v' {{ pi_manifest }} >"$tmp" && mv "$tmp" {{ pi_manifest }}
     echo "$cur -> $new"
 
 # Scaffold a third-party skill from upstream (e.g. `just vendor-skill mattpocock/skills handoff`)

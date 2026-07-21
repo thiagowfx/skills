@@ -1,0 +1,16 @@
+{
+  "name": "thiagowfx-skills",
+  "version": "0.2.5",
+  "private": true,
+  "description": "Thiago's personal Gen-AI / Claude Code skills, also installable as a pi coding agent package.",
+  "homepage": "https://github.com/thiagowfx/skills",
+  "license": "MIT",
+  "keywords": [
+    "pi-package"
+  ],
+  "pi": {
+    "skills": [
+      "./plugins/thiagowfx/skills"
+    ]
+  }
+}

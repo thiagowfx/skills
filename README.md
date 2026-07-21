@@ -12,9 +12,20 @@ distributed as a native Claude Code [plugin marketplace](https://code.claude.com
 
 `/plugin marketplace update thiagowfx` to pull later changes.
 
-### Other agents (opencode, pi, cursor...)
+### pi coding agent
 
-The plugin marketplace is Claude Code-only. On any other agent, the same `SKILL.md`
+[pi](https://pi.dev) has a native package manager that reads the same `SKILL.md` files
+directly out of this repo (no duplication, same source of truth as the plugin above):
+
+```bash
+pi install git:github.com/thiagowfx/skills          # global (~/.pi/agent/settings.json)
+pi install -l git:github.com/thiagowfx/skills        # project-local (.pi/settings.json)
+pi update --extensions                               # pull later changes
+```
+
+### Other agents (opencode, cursor...)
+
+On any other agent, the same `SKILL.md`
 files install via the cross-agent [`skills` CLI](https://github.com/vercel-labs/skills):
 
 ```bash
@@ -46,10 +57,11 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 ## Layout
 
 ```text
-.claude-plugin/marketplace.json   # marketplace manifest
-plugins/thiagowfx/                 # the "thiagowfx" plugin
-  .claude-plugin/plugin.json       # plugin manifest
-  skills/<name>/SKILL.md           # one dir per skill (auto-discovered)
+.claude-plugin/marketplace.json   # marketplace manifest (Claude Code)
+package.json                      # pi.dev package manifest, points at the same skills/ dir
+plugins/thiagowfx/                # the "thiagowfx" plugin
+  .claude-plugin/plugin.json      # plugin manifest
+  skills/<name>/SKILL.md          # one dir per skill (auto-discovered)
 ```
 
 ## Credits
