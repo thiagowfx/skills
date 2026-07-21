@@ -82,6 +82,12 @@ repos:
       - id: zizmor
   - repo: local
     hooks:
+      - id: check-version-match
+        name: Check plugin.json and package.json versions match
+        entry: "sh -c 'a=$(jq -r .version plugins/thiagowfx/.claude-plugin/plugin.json); b=$(jq -r .version package.json); if [ \"$a\" != \"$b\" ]; then echo \"version mismatch: plugin.json=$a package.json=$b (run: just bump)\" >&2; exit 1; fi'"
+        pass_filenames: false
+        language: system
+        files: ^(plugins/thiagowfx/\.claude-plugin/plugin\.json|package\.json)$
       - id: prek
         name: Validate prek config
         entry: sh -c 'command -v prek >/dev/null 2>&1 && prek validate-config || pre-commit validate-config'
