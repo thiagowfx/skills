@@ -1,17 +1,37 @@
 ---
 name: handoff
-description: Compact the current conversation into a handoff document for another agent to pick up.
+description: Create portable handoff document for another agent or harness to continue current work.
 argument-hint: "What will the next session be used for?"
 disable-model-invocation: true
 source: https://github.com/mattpocock/skills (skills/productivity/handoff, MIT © Matt Pocock)
 ---
 
-Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
+Write a self-contained handoff document for a fresh agent in any harness. Save it with a unique filename in the user's OS temporary directory, never current workspace. In your final response, give its absolute path.
 
-Include a "suggested skills" section in the document, which suggests skills that the agent should invoke.
+Use this structure:
 
-Do not duplicate content already captured in other artifacts (PRDs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.
+```markdown
+# Handoff
 
-Redact any sensitive information, such as API keys, passwords, or personally identifiable information.
+## Goal
 
-If the user passed arguments, treat them as a description of what the next session will focus on and tailor the doc accordingly.
+## Context
+
+## Current state
+
+## Decisions and findings
+
+## Relevant artifacts
+
+## Next task
+
+## Validation
+
+## Suggested skills
+```
+
+Include only context needed to continue: relevant decisions, findings, file paths, current status, verification completed or still needed, and clear next task. If user passed arguments, use them as next-session goal; otherwise infer goal from conversation.
+
+Do not duplicate content already captured in artifacts such as PRDs, plans, ADRs, issues, commits, or diffs. Reference those by path or URL, while summarizing context needed to understand them.
+
+Redact sensitive information, including API keys, passwords, and personally identifiable information.
