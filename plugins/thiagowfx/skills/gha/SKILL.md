@@ -1,7 +1,7 @@
 ---
 name: gha
 description: Analyze a GitHub Actions failure and identify the root cause. Use whenever the user pastes a GitHub Actions run URL, says "/gha", asks "why did CI fail", "what broke the build", "this workflow is failing", "which commit broke CI", or wants a failing Actions run investigated — even without the word "GitHub Actions".
-argument-hint: "<url>"
+argument-hint: "url"
 ---
 
 Investigate this GitHub Actions URL: $ARGUMENTS

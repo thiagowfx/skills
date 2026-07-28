@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Create portable handoff document for another agent or harness to continue current work.
+description: Create a portable handoff document for another agent or harness to continue current work. Use when the user asks for a handoff, continuation brief, or context transfer.
 argument-hint: "What will the next session be used for?"
 disable-model-invocation: true
 source: https://github.com/mattpocock/skills (skills/productivity/handoff, MIT © Matt Pocock)

@@ -1,7 +1,7 @@
 ---
 name: new-apkbuild
 description: Scaffold and iterate on an Alpine Linux APKBUILD for a new aport. Use when packaging something for Alpine, working under the testing tree, or the user mentions APKBUILD, aports, or newapkbuild.
-argument-hint: "<pkgname> [reference-url]"
+argument-hint: "pkgname [reference-url]"
 allowed-tools: Bash(ls:*), Bash(test:*), Bash(cat:*), Bash(grep:*), Bash(find:*), Bash(rg:*), Bash(newapkbuild:*), Bash(abuild:*), Bash(abuild-sign:*), Bash(apkbuild-lint:*), Bash(secfixes-check:*), Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(git checkout:*), Bash(git rev-parse:*), Bash(git branch:*), Bash(glab:*), WebFetch
 ---
 

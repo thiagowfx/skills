@@ -1,7 +1,7 @@
 ---
 name: bloggify
 description: Draft a blog post for perrotta.dev in the existing house style. Use when the user wants to turn something they just did, learned, or fixed into a post for the blog, or mentions bloggify, "write a blog post", or perrotta.dev.
-argument-hint: "<topic or what you want to write about>"
+argument-hint: "topic or what you want to write about"
 model: sonnet
 allowed-tools: Bash(just new:*), Bash(just blog:*), Bash(just touch:*), Bash(date:*), Bash(ls:*), Bash(cat:*), Bash(grep:*), Bash(rg:*), Bash(find:*), Bash(git -C:*), Bash(prek run:*), Read, Edit, Write, Glob
 ---

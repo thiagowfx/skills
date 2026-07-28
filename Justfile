@@ -15,6 +15,20 @@ update:
     claude plugin marketplace update thiagowfx
     claude plugin update thiagowfx@thiagowfx
 
+# Check skills with drskill
+doctor:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    tmp=$(mktemp -d)
+    trap 'trash "$tmp"' EXIT
+    mkdir -p "$tmp/project/.claude/skills" "$tmp/home"
+    for skill in "$PWD"/{{ skills_dir }}/*; do
+      ln -s "$skill" "$tmp/project/.claude/skills/$(basename "$skill")"
+    done
+    uv_cache=$(uv cache dir)
+    cd "$tmp/project"
+    HOME="$tmp/home" UV_CACHE_DIR="$uv_cache" uvx drskill scan --ci --harness claude-code
+
 # Bump the plugin version (level = major | minor | patch)
 bump level="patch":
     #!/usr/bin/env bash

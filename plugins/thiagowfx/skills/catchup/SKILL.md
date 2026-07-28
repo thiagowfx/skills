@@ -1,6 +1,6 @@
 ---
 name: catchup
-description: Refresh context on the current repo — uncommitted changes, recent commits, open PRs (with full context for the current branch's PR), worktrees, stashes, plans, and handoff notes.
+description: Refresh context on the current repo — uncommitted changes, recent commits, open PRs (with full context for the current branch's PR), worktrees, stashes, plans, and handoff notes. Use when the user asks to catch up, reorient, resume work, or inspect the repo's current state.
 model: sonnet
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git worktree list:*), Bash(git stash list:*), Bash(git branch:*), Bash(gh pr list:*), Bash(gh pr view:*), Bash(gh pr checks:*), Bash(ls:*), Bash(test:*)
 ---
