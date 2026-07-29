@@ -49,9 +49,10 @@ Transparency matters (see `2025-03-26-disclosing-ai-in-pull-requests` — the es
 ```markdown
 - - -
 
-🤖 *Drafted with `/bloggify`.*
+🤖 *Drafted with [`/bloggify`](https://github.com/thiagowfx/skills/blob/master/plugins/thiagowfx/skills/bloggify/SKILL.md).*
 ```
 
+The `/bloggify` mention must always link to this skill's source so readers can inspect it.
 Keep it to that one italic line — subtle, not a disclaimer block. Do not remove or soften it; the user can edit it out themselves if they ever want to, but the default is full disclosure.
 
 ### Step 4 — Lint and show
