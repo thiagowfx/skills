@@ -48,6 +48,8 @@ bump level="patch":
     jq --arg v "$new" '.version = $v' {{ pi_manifest }} >"$tmp" && mv "$tmp" {{ pi_manifest }}
     echo "$cur -> $new"
 
+alias release := bump
+
 # Scaffold a third-party skill from upstream (e.g. `just vendor-skill mattpocock/skills handoff`)
 vendor-skill pkg skill:
     #!/usr/bin/env bash
