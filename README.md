@@ -45,6 +45,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `address-pr-comments` | Fetch PR review comments and address them. |
 | `bloggify` | Draft a blog post for perrotta.dev in the existing house style. |
 | `catchup` | Refresh context on the current repo — uncommitted changes, commits, open PRs, worktrees, stashes, plans. |
+| `dual-review` | Run two independent code reviews, validate findings, and synthesize one action plan. |
 | `find-skills` | Discover and install agent skills when looking for functionality that might exist as a skill. |
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
 | `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
