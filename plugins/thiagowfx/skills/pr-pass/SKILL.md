@@ -9,9 +9,13 @@ Push current branch, watch its existing pull request checks, fix failures, and r
 
 ## Loop Strategy
 
-If current harness has a known native continuation or goal mechanism, use it to re-run this workflow until checks pass or five passes complete. Otherwise execute loop directly in current invocation.
+Execute the full loop directly in the current skill invocation.
 
-Do not guess command or tool names. Workflow must still work when harness provides only shell and file-editing tools.
+If the harness explicitly says a goal or continuation is already active and exposes callable tools for it, follow that active mechanism's tool contract.
+Never try to start a UI command such as `/goal`, invoke it through a skill tool (for example, `Skill(goal)`), or ask the user to start one.
+UI commands are entrypoints, not nested skills.
+
+Do not guess command or tool names. Workflow must work when the harness provides only shell and file-editing tools.
 
 ## Workflow
 
