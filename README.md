@@ -46,6 +46,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `bloggify` | Draft a blog post for perrotta.dev in the existing house style. |
 | `catchup` | Refresh context on the current repo — uncommitted changes, commits, open PRs, worktrees, stashes, plans. |
 | `dual-review` | Run two independent code reviews, validate findings, and synthesize one action plan. |
+| `meat` | Create a fast reading guide focused on behavior, data flow, contracts, and tests. Inspired by meat.dev. |
 | `find-skills` | Discover and install agent skills when looking for functionality that might exist as a skill. |
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
 | `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
