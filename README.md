@@ -53,6 +53,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
 | `new-apkbuild` | Scaffold and iterate on an Alpine Linux APKBUILD for a new aport. |
 | `pr-pass` | Push, wait for CI, fix failures, loop until all checks pass. |
+| `semantic-compression` | Compress prompts, Agent Skills, and agent instructions without losing behavioral precision. |
 | `ship` | Commit changes (if any) and send a PR for review. |
 | `tdd` | Test-driven development — red-green-refactor via vertical tracer-bullet slices. |
 
@@ -72,4 +73,5 @@ Inspired by [JuliusBrussee/skills](https://github.com/JuliusBrussee/skills).
 
 `grill-me`, `handoff`, and `tdd` are derived from [mattpocock/skills](https://github.com/mattpocock/skills)
 (MIT © Matt Pocock); `find-skills` from [vercel-labs/skills](https://github.com/vercel-labs/skills)
-(MIT © Vercel). See [THIRD_PARTY.md](THIRD_PARTY.md).
+(MIT © Vercel); `semantic-compression` from [can1357/oh-my-pi](https://github.com/can1357/oh-my-pi)
+(MIT © Mario Zechner and Can Bölük). See [THIRD_PARTY.md](THIRD_PARTY.md).
