@@ -55,6 +55,13 @@ Transparency matters (see `2025-03-26-disclosing-ai-in-pull-requests` — the es
 The `/bloggify` mention must always link to this skill's source so readers can inspect it.
 Keep it to that one italic line — subtle, not a disclaimer block. Do not remove or soften it; the user can edit it out themselves if they ever want to, but the default is full disclosure.
 
+Always add `bloggify` to the post's frontmatter `tags:` list too (alphabetically
+sorted, per house style), no exceptions. It's the machine-readable counterpart
+to the footer — it lets readers filter every `/bloggify`-drafted post out of
+(or into) their feed via the `EntryTag` field in their reader, since tags
+render as RSS `<category>` elements. See `2026-08-16-new-tag-bloggify` for why
+this tag exists.
+
 ### Step 4 — Lint and show
 
 ```sh
