@@ -8,10 +8,11 @@ source: https://github.com/mattpocock/skills (skills/productivity/handoff, MIT Â
 
 Write a self-contained handoff document for a fresh agent in any harness. Save it with a unique filename in the user's OS temporary directory, never current workspace. In your final response, give its absolute path.
 
-Start with current working directory as an absolute path, before any other content. Use this structure:
+Start with current working directory as an absolute path, before any other content. Add current harness session ID, when available, on next line. Use this structure:
 
 ```markdown
 PWD: `/absolute/path/to/current/workspace`
+Session ID: `<harness session ID>`
 
 # Handoff
 
