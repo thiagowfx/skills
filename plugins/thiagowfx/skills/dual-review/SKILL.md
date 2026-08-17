@@ -1,7 +1,7 @@
 ---
 name: dual-review
 description: Run two independent code reviews, validate every finding against the diff, and synthesize one deduplicated action plan. Use when asked to review a PR, branch, staged changes, working-tree changes, get a second opinion, or perform a dual/multi-agent code review.
-argument-hint: "[branch|staged|all] [--pr NUMBER] [--post] [--address]"
+argument-hint: "[PR-URL|PR-NUMBER|branch|staged|all|--pr PR] [--post] [--address]"
 ---
 
 # Dual Review
@@ -12,10 +12,11 @@ Review changes through two independent reviewers, then validate and synthesize t
 
 Parse `$ARGUMENTS` when supplied:
 
+- PR URL or number: review specified pull request; uses `branch` scope
 - `branch` (default): committed changes from target branch's merge base with its base branch through target HEAD
 - `staged`: `git diff --cached`
 - `all`: staged, unstaged, and untracked working-tree changes
-- `--pr <number>`: review specified pull request; only valid with `branch`
+- `--pr <URL-or-number>`: explicit form of PR URL or number; only valid with `branch`
 - `--post`: post final action plan to target pull request after showing it; never post otherwise
 - `--address`: after showing (and, if requested, posting) the action plan, fix Blockers and Important findings directly in the reviewed tree; never fix Suggestions without explicit confirmation
 
@@ -25,7 +26,7 @@ If user describes scope in natural language, honor that over defaults. Reject in
 
 1. Confirm current directory belongs to Git repository.
 2. For `branch`, resolve associated pull request when one exists. Use its base branch; otherwise use remote default branch, falling back to `main` or `master` only when verified present.
-3. For `--pr`, fetch PR metadata: number, URL, author, head ref/SHA, base ref/SHA, and changed files.
+3. For an explicit PR URL or number, including `--pr`, fetch PR metadata: number, URL, author, head ref/SHA, base ref/SHA, and changed files.
 4. Ensure reviewed tree matches intended target. Include local commits ahead of PR head when reviewing current PR branch. If target is elsewhere, use existing matching worktree or isolated temporary worktree; never switch, reset, merge, or fast-forward user's checkout.
 5. For `staged` and `all`, review current checkout only. `all` includes untracked files reported by `git status`, not only `git diff HEAD`.
 6. Record exact base, head, scope, and changed-file list before dispatching reviewers. Stop if target or base cannot be resolved, or if scope has no changes.
@@ -129,5 +130,5 @@ Skip this section entirely unless `--address` was requested.
 4. If a finding is ambiguous, requires a design decision, or the recommended fix turns out to be wrong once you're in the code, stop and ask the user instead of guessing.
 5. After edits, rerun any locally available checks that cover the change (tests, linters, type-checks) before treating a finding as resolved.
 6. Stage only the files touched while addressing findings. Commit with a message describing which findings were fixed (e.g. `address dual-review findings`), listing them briefly in the body.
-7. If scope was `branch`/`--pr`, push to the branch. If the action plan was posted (`--post`), leave a short follow-up comment noting the findings were addressed and pushed; do not repost the full plan.
+7. If scope was `branch` or an explicit PR target, push to the branch. If the action plan was posted (`--post`), leave a short follow-up comment noting the findings were addressed and pushed; do not repost the full plan.
 8. Report: which findings were fixed, which were skipped and why, and which need user input.
