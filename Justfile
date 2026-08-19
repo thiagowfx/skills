@@ -16,10 +16,16 @@ list-skills:
       awk '/^name:/{print $2; exit}' "$skill"; \
     done | sort
 
-# Update the installed thiagowfx plugin to the latest published version (restart required to apply)
-update:
+# Update installed thiagowfx integrations
+update: update-claude update-pi
+
+# Update installed thiagowfx Claude Code plugin (restart required to apply)
+update-claude:
     claude plugin marketplace update thiagowfx
     claude plugin update thiagowfx@thiagowfx
+
+# Update installed thiagowfx pi package
+update-pi:
     pi update git:github.com/thiagowfx/skills
 
 # Check skills with drskill
