@@ -3,32 +3,39 @@ pi_manifest := "package.json"
 skills_dir := "plugins/thiagowfx/skills"
 
 # List recipes
+[group('info')]
 default:
     @just --list
 
 # Print the current plugin version
+[group('info')]
 version:
     @jq -r .version {{ claude_manifest }}
 
 # List skill names
+[group('info')]
 list-skills:
     @for skill in "{{ skills_dir }}"/*/SKILL.md; do \
       awk '/^name:/{print $2; exit}' "$skill"; \
     done | sort
 
 # Update installed thiagowfx integrations
+[group('update')]
 update: update-claude update-pi
 
 # Update installed thiagowfx Claude Code plugin (restart required to apply)
+[group('update')]
 update-claude:
     claude plugin marketplace update thiagowfx
     claude plugin update thiagowfx@thiagowfx
 
 # Update installed thiagowfx pi package
+[group('update')]
 update-pi:
     pi update git:github.com/thiagowfx/skills
 
 # Check skills with drskill
+[group('check')]
 doctor:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -43,6 +50,7 @@ doctor:
     HOME="$tmp/home" UV_CACHE_DIR="$uv_cache" uvx drskill scan --ci --harness claude-code
 
 # Bump the plugin version (level = major | minor | patch)
+[group('release')]
 bump level="patch":
     #!/usr/bin/env bash
     set -euo pipefail
@@ -64,6 +72,7 @@ bump level="patch":
 alias release := bump
 
 # Scaffold a third-party skill from upstream (e.g. `just vendor-skill mattpocock/skills handoff`)
+[group('skills')]
 vendor-skill pkg skill:
     #!/usr/bin/env bash
     set -euo pipefail
