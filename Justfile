@@ -20,6 +20,7 @@ list-skills:
 update:
     claude plugin marketplace update thiagowfx
     claude plugin update thiagowfx@thiagowfx
+    pi update git:github.com/thiagowfx/skills
 
 # Check skills with drskill
 doctor:
