@@ -10,6 +10,12 @@ default:
 version:
     @jq -r .version {{ claude_manifest }}
 
+# List skill names
+list-skills:
+    @for skill in "{{ skills_dir }}"/*/SKILL.md; do \
+      awk '/^name:/{print $2; exit}' "$skill"; \
+    done | sort
+
 # Update the installed thiagowfx plugin to the latest published version (restart required to apply)
 update:
     claude plugin marketplace update thiagowfx
