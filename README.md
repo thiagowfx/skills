@@ -56,6 +56,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `ship` | Commit changes (if any) and send a PR for review. |
 | `ship-and-burn` | Ship a PR, make its checks pass, then delete its local branch and worktree. |
 | `tdd` | Test-driven development — red-green-refactor via vertical tracer-bullet slices. |
+| `sortie` | Verify a change against intent with independent review, caller-level execution, repository gates, and evidence. |
 
 ## Layout
 
