@@ -11,14 +11,14 @@ Significant decisions for this skills repo — how skills are authored and distr
 ## Adding New ADRs
 
 1. Create a new file: `NNNN-short-title.md` (increment the number).
-2. Use this template:
+2. Copy the template below, then add a row to the table above.
 
 ```markdown
 # ADR-NNNN: Title
 
 ## Status
 
-Proposed | Accepted | Deprecated | Superseded
+Proposed | Accepted | Partially Accepted | Rejected | Abandoned | Deprecated | Superseded
 
 ## Date
 
@@ -38,3 +38,6 @@ Include alternatives considered where applicable.
 
 What becomes easier or more difficult to do because of this change?
 ```
+
+Optional sections: `## Alternatives Considered` and `## Implementation` go between
+`## Decision` and `## Consequences`. `## Future Improvements` goes last.
