@@ -10,7 +10,7 @@ Write a blog post about `$ARGUMENTS` for the perrotta.dev blog.
 
 ## The blog
 
-- Repo root: don't assume a fixed path. Locate the checkout with `find ~ -maxdepth 4 -type d -name perrotta.dev 2>/dev/null | head -1`, falling back to asking the user for the path. Call the result `$REPO` for the rest of this skill. Hugo-based. Posts live in `content/posts/` as `YYYY-MM-DD-title.md`.
+- Repo root: don't assume a fixed path. Locate the checkout with `find ~ -maxdepth 3 -type d -name perrotta.dev 2>/dev/null | head -1`, falling back to asking the user for the path. Call the result `$REPO` for the rest of this skill. Hugo-based. Posts live in `content/posts/` as `YYYY-MM-DD-title.md`.
 - The repo owns the style. **Read `$REPO/STYLE.md` and `$REPO/CLAUDE.md` first** — they are the source of truth for voice, structure, frontmatter, and conventions. Do not duplicate or override them here; follow them.
 - Read the 3–4 most recent posts to calibrate. Get them by date prefix, not mtime:
 
