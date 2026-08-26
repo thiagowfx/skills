@@ -10,12 +10,12 @@ Write a blog post about `$ARGUMENTS` for the perrotta.dev blog.
 
 ## The blog
 
-- Repo root: `~/Workspace/perrotta.dev`. Hugo-based. Posts live in `content/posts/` as `YYYY-MM-DD-title.md`.
-- The repo owns the style. **Read `~/Workspace/perrotta.dev/STYLE.md` and `~/Workspace/perrotta.dev/CLAUDE.md` first** — they are the source of truth for voice, structure, frontmatter, and conventions. Do not duplicate or override them here; follow them.
+- Repo root: don't assume a fixed path. Use `$BLOGGIFY_REPO` if set; otherwise locate the checkout with `find ~ -maxdepth 4 -type d -name perrotta.dev 2>/dev/null | head -1`, falling back to asking the user for the path. Call the result `$REPO` for the rest of this skill. Hugo-based. Posts live in `content/posts/` as `YYYY-MM-DD-title.md`.
+- The repo owns the style. **Read `$REPO/STYLE.md` and `$REPO/CLAUDE.md` first** — they are the source of truth for voice, structure, frontmatter, and conventions. Do not duplicate or override them here; follow them.
 - Read the 3–4 most recent posts to calibrate. Get them by date prefix, not mtime:
 
   ```sh
-  ls ~/Workspace/perrotta.dev/content/posts/*.md | sort | tail -5
+  ls $REPO/content/posts/*.md | sort | tail -5
   ```
 
 ## Process
@@ -31,7 +31,7 @@ The house style is *show, don't explain*: real commands, real output, real diffs
 ### Step 2 — Scaffold the file
 
 ```sh
-cd ~/Workspace/perrotta.dev && just new "post title"
+cd $REPO && just new "post title"
 ```
 
 This creates `content/posts/$(date +%F)-<slug>.md` with frontmatter and (when run in a TTY) opens the editor — here it just prints the path. The title is lowercased per house style; namespace with a colon when it fits (e.g. `kubectl: atomic secret upsert`).
@@ -65,7 +65,7 @@ this tag exists.
 ### Step 4 — Lint and show
 
 ```sh
-cd ~/Workspace/perrotta.dev && prek run --files content/posts/<file>
+cd $REPO && prek run --files content/posts/<file>
 ```
 
 Markdownlint and the Hugo build run here. Fix what it flags. Then show the user the rendered file path and the post body, and stop — **don't commit** unless asked, and **never `git push`**. Committing is the user's call (`git commit -m "new post: title"`).
