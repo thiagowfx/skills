@@ -17,7 +17,13 @@ Personal Claude Code skills, shipped as a plugin marketplace.
    matches against to decide when to invoke — make it trigger-rich (mention the phrases a user
    would say).
 3. Add a row to the README skills table.
-4. `just bump` (or `just bump minor` / `major`) — bumps `version` in `plugin.json`; users only
-   get updates when it changes.
+4. Follow the release rule below.
+
+## Release changes
+
+Before committing any change under `plugins/thiagowfx/`, run `just bump` once for that commit.
+Use `just bump minor` or `just bump major` when needed. This updates both
+`plugins/thiagowfx/.claude-plugin/plugin.json` and `package.json`. Include both files in the same
+commit as the plugin change. Users only receive plugin updates when this version changes.
 
 Manifest JSON validity is enforced by the `check-json` prek hook on commit.
