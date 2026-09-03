@@ -42,25 +42,14 @@ If you need to set the date precisely, `just touch <path>` rewrites the frontmat
 
 Follow STYLE.md — it is the source of truth for voice, structure, frontmatter, and conventions.
 
-### Step 3.5 — Disclose that this skill wrote the draft
+### Step 3.5 — Tag the draft
 
-Transparency matters (see `2025-03-26-disclosing-ai-in-pull-requests` — the established signal is a 🤖). End every post this skill drafts with a subtle footer, separated from the body by a thematic break:
-
-```markdown
-- - -
-
-🤖 *Drafted with [`/bloggify`](https://github.com/thiagowfx/skills/blob/master/plugins/thiagowfx/skills/bloggify/SKILL.md).*
-```
-
-The `/bloggify` mention must always link to this skill's source so readers can inspect it.
-Keep it to that one italic line — subtle, not a disclaimer block. Do not remove or soften it; the user can edit it out themselves if they ever want to, but the default is full disclosure.
-
-Always add `bloggify` to the post's frontmatter `tags:` list too (alphabetically
-sorted, per house style), no exceptions. It's the machine-readable counterpart
-to the footer — it lets readers filter every `/bloggify`-drafted post out of
-(or into) their feed via the `EntryTag` field in their reader, since tags
-render as RSS `<category>` elements. See `2026-08-16-new-tag-bloggify` for why
-this tag exists.
+Always add `bloggify` to the post's frontmatter `tags:` list (alphabetically
+sorted, per house style), no exceptions. The blog uses this tag to add the
+disclosure automatically. It also lets readers filter every `/bloggify`-drafted
+post out of (or into) their feed via the `EntryTag` field in their reader, since
+tags render as RSS `<category>` elements. See `2026-08-16-new-tag-bloggify` for
+why this tag exists.
 
 ### Step 4 — Lint and show
 
@@ -75,4 +64,4 @@ Pushing is always the user's decision, even when they ask you to commit.
 ## Notes
 
 - This skill drafts; the user edits and ships. Hand back a draft that reads like their other posts, not a finished decree.
-- The blog's own CLAUDE.md states no AI assistance is used for content — this skill exists because the user explicitly asked for it. Treat output as a *draft for the user*, leave the final voice to them, disclose it (Step 3.5), and don't commit on your own.
+- The blog's own CLAUDE.md states no AI assistance is used for content — this skill exists because the user explicitly asked for it. Treat output as a *draft for the user*, leave the final voice to them, tag it (Step 3.5), and don't commit on your own.
