@@ -23,6 +23,8 @@ list-skills:
 [group('update')]
 update: update-claude update-pi
 
+alias upgrade := update
+
 # Update installed thiagowfx Claude Code plugin (restart required to apply)
 [group('update')]
 update-claude:
