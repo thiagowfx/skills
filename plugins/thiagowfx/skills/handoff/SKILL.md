@@ -8,7 +8,13 @@ source: https://github.com/mattpocock/skills (skills/productivity/handoff, MIT Â
 
 Write a self-contained handoff document for a fresh agent in any harness. Save it with a unique filename in the user's OS temporary directory, never current workspace. In your final response, give its absolute path.
 
-Start with current working directory as an absolute path, before any other content. Add current harness session ID, when available, on next line. Use this structure:
+Start with current working directory as an absolute path, before any other content. Add current harness session ID, when available, on next line.
+
+Retrieve session ID from harness metadata before writing. Do not infer availability from conversation context. In Pi, run `printf '%s\n' "$PI_SESSION_ID"` with Bash; Pi injects current session ID into each Bash command.
+
+If no harness session ID is available, omit line. Never write placeholder such as `unavailable`.
+
+Use this structure:
 
 ```markdown
 PWD: `/absolute/path/to/current/workspace`
