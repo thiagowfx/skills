@@ -42,7 +42,7 @@ doctor:
     #!/usr/bin/env bash
     set -euo pipefail
     tmp=$(mktemp -d)
-    trap 'trash "$tmp"' EXIT
+    trap 'rm -rf -- "$tmp"' EXIT
     mkdir -p "$tmp/project/.claude/skills" "$tmp/home"
     for skill in "$PWD"/{{ skills_dir }}/*; do
       ln -s "$skill" "$tmp/project/.claude/skills/$(basename "$skill")"
