@@ -1,7 +1,7 @@
 ---
 name: dual-review
 description: Run two independent code reviews, validate every finding against the diff, and synthesize one deduplicated action plan. Use when asked to review a PR, branch, staged changes, working-tree changes, get a second opinion, or perform a dual/multi-agent code review.
-argument-hint: "[PR-URL|PR-NUMBER|branch|staged|all|--pr PR] [--post] [--address]"
+argument-hint: "[PR-URL|PR-NUMBER|branch|staged|all|--pr PR] [--no-post] [--address]"
 ---
 
 # Dual Review
@@ -17,8 +17,9 @@ Parse `$ARGUMENTS` when supplied:
 - `staged`: `git diff --cached`
 - `all`: staged, unstaged, and untracked working-tree changes
 - `--pr <URL-or-number>`: explicit form of PR URL or number; only valid with `branch`
-- `--post`: post final action plan to target pull request after showing it; never post otherwise
-- `--address`: after showing (and, if requested, posting) the action plan, fix Blockers and Important findings directly in the reviewed tree; never fix Suggestions without explicit confirmation
+- Post final action plan to target pull request after showing it when target resolves to pull request
+- `--no-post`: do not post final action plan
+- `--address`: after showing (and, unless `--no-post`, posting) the action plan, fix Blockers and Important findings directly in the reviewed tree; never fix Suggestions without explicit confirmation
 
 If user describes scope in natural language, honor that over defaults. Reject incompatible or unknown arguments instead of guessing.
 
@@ -118,7 +119,7 @@ Return standalone Markdown, not two reviews:
 
 Deduplicate exact overlaps. Generalize shared causes. Keep headings skimmable. No praise, preamble, reviewer vote counts, raw reviewer transcripts, or fenced Markdown wrapper.
 
-Show final action plan in chat. Post only when user explicitly requested `--post` or clearly asked for PR comment. Use body file rather than shell-interpolating Markdown. Report PR URL after successful post.
+Show final action plan in chat. When target resolves to pull request, post action plan unless user supplied `--no-post`. Do not post when no target pull request exists. Use body file rather than shell-interpolating Markdown. Report PR URL after successful post.
 
 ## 7. Address Findings (only with `--address`)
 
@@ -130,5 +131,5 @@ Skip this section entirely unless `--address` was requested.
 4. If a finding is ambiguous, requires a design decision, or the recommended fix turns out to be wrong once you're in the code, stop and ask the user instead of guessing.
 5. After edits, rerun any locally available checks that cover the change (tests, linters, type-checks) before treating a finding as resolved.
 6. Stage only the files touched while addressing findings. Commit with a message describing which findings were fixed (e.g. `address dual-review findings`), listing them briefly in the body.
-7. If scope was `branch` or an explicit PR target, push to the branch. If the action plan was posted (`--post`), leave a short follow-up comment noting the findings were addressed and pushed; do not repost the full plan.
+7. If scope was `branch` or an explicit PR target, push to the branch. If action plan was posted, leave a short follow-up comment noting findings were addressed and pushed; do not repost full plan.
 8. Report: which findings were fixed, which were skipped and why, and which need user input.
