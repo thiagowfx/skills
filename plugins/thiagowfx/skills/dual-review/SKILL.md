@@ -1,7 +1,7 @@
 ---
 name: dual-review
 description: Run two independent code reviews, validate every finding against the diff, and synthesize one deduplicated action plan. Use when asked to review a PR, branch, staged changes, working-tree changes, get a second opinion, or perform a dual/multi-agent code review.
-argument-hint: "[PR-URL|PR-NUMBER|branch|staged|all|--pr PR] [--no-post] [--address]"
+argument-hint: "[PR-URL|PR-NUMBER|branch|staged|all|--pr PR] [--no-post] [--no-address]"
 ---
 
 # Dual Review
@@ -19,7 +19,8 @@ Parse `$ARGUMENTS` when supplied:
 - `--pr <URL-or-number>`: explicit form of PR URL or number; only valid with `branch`
 - Post final action plan to target pull request after showing it when target resolves to pull request
 - `--no-post`: do not post final action plan
-- `--address`: after showing (and, unless `--no-post`, posting) the action plan, fix Blockers and Important findings directly in the reviewed tree; never fix Suggestions without explicit confirmation
+- When target resolves to pull request authored by authenticated GitHub user, address Blockers and Important findings after showing (and, unless `--no-post`, posting) action plan; never fix Suggestions without explicit confirmation
+- `--no-address`: do not address findings
 
 If user describes scope in natural language, honor that over defaults. Reject incompatible or unknown arguments instead of guessing.
 
@@ -28,9 +29,10 @@ If user describes scope in natural language, honor that over defaults. Reject in
 1. Confirm current directory belongs to Git repository.
 2. For `branch`, resolve associated pull request when one exists. Use its base branch; otherwise use remote default branch, falling back to `main` or `master` only when verified present.
 3. For an explicit PR URL or number, including `--pr`, fetch PR metadata: number, URL, author, head ref/SHA, base ref/SHA, and changed files.
-4. Ensure reviewed tree matches intended target. Include local commits ahead of PR head when reviewing current PR branch. If target is elsewhere, use existing matching worktree or isolated temporary worktree; never switch, reset, merge, or fast-forward user's checkout.
-5. For `staged` and `all`, review current checkout only. `all` includes untracked files reported by `git status`, not only `git diff HEAD`.
-6. Record exact base, head, scope, and changed-file list before dispatching reviewers. Stop if target or base cannot be resolved, or if scope has no changes.
+4. When target resolves to pull request, fetch authenticated GitHub user login and record whether it matches PR author.
+5. Ensure reviewed tree matches intended target. Include local commits ahead of PR head when reviewing current PR branch. If target is elsewhere, use existing matching worktree or isolated temporary worktree; never switch, reset, merge, or fast-forward user's checkout.
+6. For `staged` and `all`, review current checkout only. `all` includes untracked files reported by `git status`, not only `git diff HEAD`.
+7. Record exact base, head, scope, and changed-file list before dispatching reviewers. Stop if target or base cannot be resolved, or if scope has no changes.
 
 Warn when uncommitted changes exist outside selected scope, because reviewers will not see them. After review, remove only worktree created for this run using repository's worktree manager. Never remove pre-existing worktrees; report temporary path if cleanup fails.
 
@@ -121,9 +123,9 @@ Deduplicate exact overlaps. Generalize shared causes. Keep headings skimmable. N
 
 Show final action plan in chat. When target resolves to pull request, post action plan unless user supplied `--no-post`. Do not post when no target pull request exists. Use body file rather than shell-interpolating Markdown. Report PR URL after successful post.
 
-## 7. Address Findings (only with `--address`)
+## 7. Address Findings
 
-Skip this section entirely unless `--address` was requested.
+Skip this section unless target resolves to pull request authored by authenticated GitHub user and user did not supply `--no-address`.
 
 1. Work in the same tree that was reviewed (existing worktree or user's checkout for `staged`/`all`); never create a second copy of the changes.
 2. Address every Blocker and every Important finding. For Suggestions, ask the user which (if any) to apply; default to none.
