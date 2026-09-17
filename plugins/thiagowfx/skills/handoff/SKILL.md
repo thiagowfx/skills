@@ -35,8 +35,6 @@ Session ID: `<harness session ID>`
 ## Next task
 
 ## Validation
-
-## Suggested skills
 ```
 
 Include only context needed to continue: relevant decisions, findings, file paths, current status, verification completed or still needed, and clear next task. If user passed arguments, use them as next-session goal; otherwise infer goal from conversation.
