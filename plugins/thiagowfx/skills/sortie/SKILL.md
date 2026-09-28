@@ -24,9 +24,10 @@ Reject unknown or conflicting arguments.
 When no target is supplied, use this order:
 
 1. Current branch's open PR, if one exists.
-2. `all`, if current checkout has local changes.
-3. Current branch against its verified default-branch merge base, if branch is ahead.
-4. `HEAD`, for a clean default branch.
+2. `branch`, if there is no open PR and the current branch is not the verified default branch.
+3. `staged`, if on the default branch without an open PR.
+
+Explicit targets override this order. Verify the remote default branch rather than guessing its name. If the selected scope is empty, stop; do not substitute `HEAD`, unstaged changes, or untracked files. Local changes outside the selected scope remain excluded.
 
 ## 1. Freeze Scope
 

@@ -10,7 +10,15 @@ Make a decision about adopting a change, not a correctness verdict or a defense 
 
 ## Select the change
 
-Use an explicit user target first. Accept a PR URL or number, revision or range, `branch`, `staged`, `all`, or a proposal described in the conversation. Reject ambiguous or conflicting targets. With no explicit target, prefer all local changes (including untracked files); otherwise use the current branch's PR or its changes since the verified default-branch merge base. If there is no change or proposal to assess, ask for one. Do not silently assess an unrelated `HEAD` commit.
+Use an explicit user target first. Accept a PR URL or number, revision or range, `branch`, `staged`, `all`, or a proposal described in the conversation. Reject ambiguous or conflicting targets. With no explicit target, use this order:
+
+1. Current branch's open PR, if one exists.
+2. `branch`, if there is no open PR and the current branch is not the verified default branch.
+3. `staged`, if on the default branch without an open PR.
+
+Explicit targets and proposals override this order. Verify the remote default branch rather than guessing its name.
+If the selected scope contains no change, ask for a change or proposal; do not substitute `HEAD`, unstaged changes, or untracked files.
+Identify local changes outside selected scope as excluded.
 
 Record the exact scope and baseline:
 
@@ -20,7 +28,9 @@ Record the exact scope and baseline:
 - `staged`: inspect staged diff and file list. `all`: inspect staged, unstaged, and untracked content; do not rely on `git diff` alone.
 - Proposal: state the proposed behavior and the current behavior from user context or repository evidence. Label assumptions.
 
-Read behavior-bearing changes and relevant callers, tests, documentation, or history to understand intent and effects. Check for local changes outside selected scope and identify them as excluded. If the target is too large, first group it by independently adoptable decisions; do not give one verdict for unrelated changes.
+Read behavior-bearing changes and relevant callers, tests, documentation, or history to understand intent and effects.
+Check for local changes outside selected scope and identify them as excluded.
+If the target is too large, first group it by independently adoptable decisions; do not give one verdict for unrelated changes.
 
 ## Compare options
 
@@ -32,7 +42,10 @@ Compare **adopt as-is**, **keep current behavior**, and at least one plausible s
 - Reversibility: cost to undo, data or API commitments, and cost of waiting.
 - Evidence: tests, observed behavior, usage, measurements, and requirements. Distinguish demonstrated facts from inferred effects or assumptions; do not invent quantities or claim a test proves adoption value.
 
-Treat time already spent as sunk cost. Ask whether the benefit exceeds the **future** cost and risk relative to the best alternative. Avoid counting the same benefit or cost twice. Do not praise a change for existing merely because it is implemented. State what would change your decision if material evidence is missing. If correctness is disputed, identify the specific risk; do not claim to have completed a full code review or verification unless you did so.
+Treat time already spent as sunk cost. Ask whether the benefit exceeds the **future** cost and risk relative to the best alternative.
+Avoid counting the same benefit or cost twice. Do not praise a change for existing merely because it is implemented.
+State what would change your decision if material evidence is missing. If correctness is disputed, identify the specific risk;
+do not claim to have completed a full code review or verification unless you did so.
 
 ## Report
 
@@ -43,4 +56,6 @@ Lead with `Recommendation: ADOPT | REVISE | REJECT | DEFER` and one sentence exp
 - **Alternatives:** status quo and best feasible alternative, with reasons each wins or loses.
 - **Decision condition:** smallest change or missing fact that would reverse or confirm the recommendation; omit if not needed.
 
-Cite `path:line`, test results, PR text, or user requirements for material claims. Label unverified assumptions. If recommending `REVISE`, say exactly what to change. If recommending `DEFER`, identify the missing evidence and how to get it. Keep the report proportional to the decision. Do not edit code or start another skill unless asked.
+Cite `path:line`, test results, PR text, or user requirements for material claims. Label unverified assumptions.
+If recommending `REVISE`, say exactly what to change. If recommending `DEFER`, identify the missing evidence and how to get it.
+Keep the report proportional to the decision. Do not edit code or start another skill unless asked.

@@ -13,7 +13,7 @@ Review changes through two independent reviewers, then validate and synthesize t
 Parse `$ARGUMENTS` when supplied:
 
 - PR URL or number: review specified pull request; uses `branch` scope
-- `branch` (default): committed changes from target branch's merge base with its base branch through target HEAD
+- `branch`: committed changes from target branch's merge base with its base branch through target HEAD
 - `staged`: `git diff --cached`
 - `all`: staged, unstaged, and untracked working-tree changes
 - `--pr <URL-or-number>`: explicit form of PR URL or number; only valid with `branch`
@@ -22,12 +22,18 @@ Parse `$ARGUMENTS` when supplied:
 - When target resolves to pull request authored by authenticated GitHub user, address Blockers and Important findings after showing (and, unless `--no-post`, posting) action plan; never fix Suggestions without explicit confirmation
 - `--no-address`: do not address findings
 
-If user describes scope in natural language, honor that over defaults. Reject incompatible or unknown arguments instead of guessing.
+If user describes scope in natural language, honor that over defaults. Reject incompatible or unknown arguments instead of guessing. With no explicit target, use this order:
+
+1. Current branch's open PR, if one exists.
+2. `branch`, if there is no open PR and the current branch is not the verified default branch.
+3. `staged`, if on the default branch without an open PR.
+
+Explicit targets override this order. Verify the remote default branch rather than guessing its name. If the selected scope is empty, stop; do not substitute `HEAD`, unstaged changes, or untracked files. Local changes outside the selected scope remain excluded.
 
 ## 1. Resolve Target Without Disturbing User Work
 
 1. Confirm current directory belongs to Git repository.
-2. For `branch`, resolve associated pull request when one exists. Use its base branch; otherwise use remote default branch, falling back to `main` or `master` only when verified present.
+2. Resolve the current branch's open PR for implicit scope. For `branch`, use its PR base when one exists; otherwise use the verified remote default branch and its merge base.
 3. For an explicit PR URL or number, including `--pr`, fetch PR metadata: number, URL, author, head ref/SHA, base ref/SHA, and changed files.
 4. When target resolves to pull request, fetch authenticated GitHub user login and record whether it matches PR author.
 5. Ensure reviewed tree matches intended target. Include local commits ahead of PR head when reviewing current PR branch. If target is elsewhere, use existing matching worktree or isolated temporary worktree; never switch, reset, merge, or fast-forward user's checkout.

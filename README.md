@@ -60,6 +60,10 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `weigh` | Compare a change with the status quo and alternatives; recommend adopt, revise, reject, or defer. |
 | `fr` | Search local coding-agent session history with fast-resume and identify safe resume commands. |
 
+For `dual-review`, `meat`, `sortie`, and `weigh`, an explicit target takes priority. Without one, use the current branch's open PR.
+If no PR exists, compare a non-default branch with the default branch. On the default branch, inspect staged changes only.
+An empty selected scope does not fall back to unrelated changes.
+
 ## Layout
 
 ```text

@@ -17,7 +17,7 @@ Parse `$ARGUMENTS` or the user's natural-language target:
 
 - `--post`: post the final reading guide to the target pull request after showing it; never post otherwise
 
-Reject unknown arguments instead of guessing. `--post` requires a PR URL or number, or `branch` scope with an associated pull request. Reject it for revision, range, `staged`, `unstaged`, `all`, or default `HEAD` scope.
+Reject unknown arguments instead of guessing. `--post` requires a target PR (explicit or resolved from the current branch). Reject it for revision, range, `staged`, `unstaged`, `all`, or a branch without a PR.
 
 ## Resolve Scope
 
@@ -30,7 +30,15 @@ Resolve the target:
 - `staged`: `git diff --cached --find-renames`.
 - `unstaged`: `git diff --find-renames`.
 - `all`: staged, unstaged, and untracked files from the current checkout.
-- no target: read `HEAD` with `git show --find-renames HEAD`.
+With no explicit target, use this order:
+
+1. Current branch's open PR, if one exists; use the PR scope above.
+2. If there is no open PR and the current branch is not the verified default branch, use `branch` scope.
+3. If on the default branch without an open PR, use `staged` scope.
+
+Explicit targets override this order. Do not substitute `HEAD`, unstaged changes, or untracked files when the selected scope is empty;
+report that there are no changes in that scope. Verify the default branch from the remote rather than guessing its name.
+Keep local changes outside the selected scope excluded.
 
 When `--post` is requested, resolve and record the target PR number and URL before reading the change.
 
