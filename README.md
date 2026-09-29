@@ -55,7 +55,6 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `new-apkbuild` | Scaffold and iterate on an Alpine Linux APKBUILD for a new aport. |
 | `pr-pass` | Push, wait for CI, fix failures, loop until all checks pass. |
 | `ship` | Commit changes (if any) and send a PR for review. |
-| `ship-and-burn` | Ship a PR, make its checks pass, then delete its local branch and worktree. |
 | `sortie` | Verify a change against intent with independent review, caller-level execution, repository gates, and evidence. |
 | `tdd` | Test-driven development — red-green-refactor via vertical tracer-bullet slices. |
 | `weigh` | Compare a change with the status quo and alternatives; recommend adopt, revise, reject, or defer. |
