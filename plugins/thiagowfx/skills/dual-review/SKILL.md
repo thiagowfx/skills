@@ -16,7 +16,7 @@ Parse `$ARGUMENTS` when supplied:
 - `branch`: committed changes from target branch's merge base with its base branch through target HEAD
 - `staged`: `git diff --cached`
 - `all`: staged, unstaged, and untracked working-tree changes
-- `--pr <URL-or-number>`: explicit form of PR URL or number; only valid with `branch`
+- `--pr <URL-or-number>`: explicit PR target; do not combine it with another target
 - Post final action plan to target pull request after showing it when target resolves to pull request
 - `--no-post`: do not post final action plan
 - When target resolves to pull request authored by authenticated GitHub user, address Blockers and Important findings after showing (and, unless `--no-post`, posting) action plan; never fix Suggestions without explicit confirmation

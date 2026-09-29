@@ -1,9 +1,9 @@
 ---
 name: ship
-description: Commit any pending changes and open a pull request for review. Use whenever the user says "/ship", "ship it", "send a PR", "open a PR", "commit and PR this", "put this up for review", or wants their current work turned into a reviewable PR — branching off main automatically when needed.
+description: Commit any pending changes and open a pull request for review. Use whenever the user says "/ship", "ship it", "send a PR", "open a PR", "commit and PR this", "put this up for review", or wants their current work turned into a reviewable PR — branching off the default branch automatically when needed.
 argument-hint: "[reviewer]"
 model: sonnet
-allowed-tools: Bash(cat:*), Bash(gh api user:*), Bash(gh pr create:*), Bash(gh pr edit:*), Bash(gh pr view:*), Bash(git add:*), Bash(git checkout:*), Bash(git commit:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(git rev-parse:*), Bash(git status:*), Bash(git symbolic-ref:*), Bash(test:*)
+allowed-tools: Bash(cat:*), Bash(gh api user:*), Bash(gh repo view:*), Bash(gh pr create:*), Bash(gh pr edit:*), Bash(gh pr view:*), Bash(git add:*), Bash(git checkout:*), Bash(git commit:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), Bash(git rev-parse:*), Bash(git status:*), Bash(git symbolic-ref:*), Bash(test:*)
 ---
 
 Commit all changes and create a pull request. Follow these steps:
@@ -19,8 +19,9 @@ Commit all changes and create a pull request. Follow these steps:
 ! git diff --staged
 
 The default branch is whatever `refs/remotes/origin/HEAD` points at (e.g. `origin/main`). If that
-ref is unset, fall back to `main` when `origin/main` exists, else `master`. Call the result
-`<default>` and use it consistently below instead of hardcoding `main`/`master`.
+ref is unset, query `gh repo view --json defaultBranchRef --jq .defaultBranchRef.name` and verify
+that `refs/remotes/origin/<default>` exists with `git rev-parse --verify`. Stop if the default
+branch or its remote ref cannot be resolved. Call the result `<default>` below.
 
 ## Step 1: Commit Changes
 
@@ -44,6 +45,7 @@ ref is unset, fall back to `main` when `origin/main` exists, else `master`. Call
 
 ## Step 4: Push the Branch
 
+- Set `<branch-name>` to the current branch (newly created or existing).
 - Push with upstream tracking: `git push -u origin <branch-name>`
 - If push fails, report the error and stop
 
