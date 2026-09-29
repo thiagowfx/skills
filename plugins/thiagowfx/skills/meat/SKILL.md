@@ -15,9 +15,9 @@ This is code comprehension, not defect finding. Do not report findings, severiti
 
 Parse `$ARGUMENTS` or the user's natural-language target:
 
-- `--post`: post the final reading guide to the target pull request after showing it; never post otherwise
+- `--post`: post the final reading guide to the target pull request after showing it. An explicit natural-language request to comment on the PR also authorizes posting; never post otherwise.
 
-Reject unknown arguments instead of guessing. `--post` requires a target PR (explicit or resolved from the current branch). Reject it for revision, range, `staged`, `unstaged`, `all`, or a branch without a PR.
+Reject unknown arguments instead of guessing. Posting requires a target PR (explicit or resolved from the current branch). Reject posting for revision, range, `staged`, `unstaged`, `all`, or a branch without a PR.
 
 ## Resolve Scope
 
@@ -40,7 +40,7 @@ Explicit targets override this order. Do not substitute `HEAD`, unstaged changes
 report that there are no changes in that scope. Verify the default branch from the remote rather than guessing its name.
 Keep local changes outside the selected scope excluded.
 
-When `--post` is requested, resolve and record the target PR number and URL before reading the change.
+When posting is requested, resolve and record the target PR number and URL before reading the change.
 
 Confirm repository and scope contain changes. Record exact scope and complete changed-file list. Never switch, reset, merge, or mutate the checkout.
 Read surrounding source only when the diff leaves a load-bearing contract ambiguous; for another revision, prefer
