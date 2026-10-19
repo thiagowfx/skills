@@ -46,8 +46,6 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `bloggify` | Draft a blog post for perrotta.dev in the existing house style. |
 | `catchup` | Refresh context on the current repo — uncommitted changes, commits, open PRs, worktrees, stashes, plans. |
 | `dual-review` | Run two independent code reviews, validate findings, and synthesize one action plan. |
-| `find-skills` | Discover and install agent skills when looking for functionality that might exist as a skill. |
-| `fr` | Search local coding-agent session history with fast-resume and identify safe resume commands. |
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
 | `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
@@ -56,10 +54,8 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `pr-pass` | Push, wait for CI, fix failures, loop until all checks pass. |
 | `ship` | Commit changes (if any) and send a PR for review. |
 | `sortie` | Verify a change against intent with independent review, caller-level execution, repository gates, and evidence. |
-| `tdd` | Test-driven development — red-green-refactor via vertical tracer-bullet slices. |
-| `weigh` | Compare a change with the status quo and alternatives; recommend adopt, revise, reject, or defer. |
 
-For `dual-review`, `meat`, `sortie`, and `weigh`, an explicit target takes priority. Without one, use the current branch's open PR.
+For `dual-review`, `meat`, and `sortie`, an explicit target takes priority. Without one, use the current branch's open PR.
 If no PR exists, compare a non-default branch with the default branch. On the default branch, inspect staged changes only.
 An empty selected scope does not fall back to unrelated changes.
 
@@ -77,6 +73,5 @@ plugins/thiagowfx/                # the "thiagowfx" plugin
 
 Inspired by [JuliusBrussee/skills](https://github.com/JuliusBrussee/skills).
 
-`grill-me`, `handoff`, and `tdd` are derived from [mattpocock/skills](https://github.com/mattpocock/skills)
-(MIT © Matt Pocock); `find-skills` from [vercel-labs/skills](https://github.com/vercel-labs/skills)
-(MIT © Vercel). See [THIRD_PARTY.md](THIRD_PARTY.md).
+`grill-me` and `handoff` are derived from [mattpocock/skills](https://github.com/mattpocock/skills)
+(MIT © Matt Pocock). See [THIRD_PARTY.md](THIRD_PARTY.md).

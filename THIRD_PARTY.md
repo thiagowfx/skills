@@ -1,11 +1,5 @@
 # Third-party attributions
 
-## vercel-labs/skills
-
-`find-skills` (`plugins/thiagowfx/skills/find-skills/`) is derived from
-[vercel-labs/skills](https://github.com/vercel-labs/skills) (`skills/find-skills`), used under the
-MIT License.
-
 ## mattpocock/skills
 
 All derived from [mattpocock/skills](https://github.com/mattpocock/skills), used
@@ -13,7 +7,6 @@ under the MIT License (notice below):
 
 - `grill-me` (`plugins/thiagowfx/skills/grill-me/`) — from `skills/productivity/grilling`.
 - `handoff` (`plugins/thiagowfx/skills/handoff/`) — from `skills/productivity/handoff`.
-- `tdd` (`plugins/thiagowfx/skills/tdd/`) — from `skills/engineering/tdd`.
 
 ```text
 MIT License
