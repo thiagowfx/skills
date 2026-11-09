@@ -46,6 +46,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `bloggify` | Draft a blog post for perrotta.dev in the existing house style. |
 | `catchup` | Refresh context on the current repo — uncommitted changes, commits, open PRs, worktrees, stashes, plans. |
 | `dual-review` | Run two independent code reviews, validate findings, and synthesize one action plan. |
+| `find-ready-prs` | Find your open PRs that are ready to merge (approved, green, no conflicts) without merging them. |
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
 | `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
