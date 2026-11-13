@@ -9,7 +9,7 @@ model: haiku
 
 Turn a change into a compact reading guide for a senior engineer: what changed, where data came from, where it went, and what behavior appeared. Do not invoke external summarizers, another model, reviewers, or a numbered edit-plan loop.
 
-This is code comprehension, not defect finding. Do not report findings, severities, suggestions, approval verdicts, or style feedback. If the user wants correctness review, use `dual-review` instead.
+This is code comprehension, not defect finding. Do not report findings, severities, suggestions, approval verdicts, or style feedback.
 
 ## Arguments
 
