@@ -49,13 +49,12 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
 | `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
-| `meat` | Create a fast reading guide focused on behavior, data flow, contracts, and tests. Inspired by meat.dev. |
 | `new-apkbuild` | Scaffold and iterate on an Alpine Linux APKBUILD for a new aport. |
 | `pr-pass` | Push, wait for CI, fix failures, loop until all checks pass. |
 | `ship` | Commit changes (if any) and send a PR for review. |
 | `sortie` | Verify a change against intent with independent review, caller-level execution, repository gates, and evidence. |
 
-For `meat` and `sortie`, an explicit target takes priority. Without one, use the current branch's open PR.
+For `sortie`, an explicit target takes priority. Without one, use the current branch's open PR.
 If no PR exists, compare a non-default branch with the default branch. On the default branch, inspect staged changes only.
 An empty selected scope does not fall back to unrelated changes.
 
