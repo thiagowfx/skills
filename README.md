@@ -45,7 +45,6 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `address-pr-comments` | Fetch PR review comments and address them. |
 | `bloggify` | Draft a blog post for perrotta.dev in the existing house style. |
 | `catchup` | Refresh context on the current repo — uncommitted changes, commits, open PRs, worktrees, stashes, plans. |
-| `dual-review` | Run two independent code reviews, validate findings, and synthesize one action plan. |
 | `find-ready-prs` | Find your open PRs that are ready to merge (approved, green, no conflicts) without merging them. |
 | `gha` | Analyze GitHub Actions failures and identify root causes. |
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
@@ -56,7 +55,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `ship` | Commit changes (if any) and send a PR for review. |
 | `sortie` | Verify a change against intent with independent review, caller-level execution, repository gates, and evidence. |
 
-For `dual-review`, `meat`, and `sortie`, an explicit target takes priority. Without one, use the current branch's open PR.
+For `meat` and `sortie`, an explicit target takes priority. Without one, use the current branch's open PR.
 If no PR exists, compare a non-default branch with the default branch. On the default branch, inspect staged changes only.
 An empty selected scope does not fall back to unrelated changes.
 
