@@ -50,6 +50,7 @@ or versioned updates. Prefer the marketplace above on Claude Code.
 | `grill-me` | Interview you relentlessly about a plan or design until shared understanding. |
 | `handoff` | Compact the current conversation into a handoff document for another agent to pick up. |
 | `new-apkbuild` | Scaffold and iterate on an Alpine Linux APKBUILD for a new aport. |
+| `obsidian-format-notes` | Reformat messy Obsidian notes into clean Obsidian-flavored Markdown, keeping all content. |
 | `pr-pass` | Push, wait for CI, fix failures, loop until all checks pass. |
 | `ship` | Commit changes (if any) and send a PR for review. |
 
